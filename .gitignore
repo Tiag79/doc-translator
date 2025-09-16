@@ -1,0 +1,14 @@
+# Virtual environments
+.venv/
+.venv_privacy/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local caches
+.cache/
+.hfhub/
+
+# VS Code settings
+.vscode/

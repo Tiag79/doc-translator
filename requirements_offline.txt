@@ -1,0 +1,8 @@
+streamlit
+opencv-python
+pytesseract
+Pillow
+numpy
+transformers
+sentencepiece
+torch
