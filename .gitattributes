@@ -1,0 +1,12 @@
+# Normalize line endings across platforms
+* text=auto
+
+# Treat these as binary (no line-ending conversions)
+*.png binary
+*.jpg binary
+*.jpeg binary
+
+# Python/Jupyter hints (optional, safe)
+*.py text
+*.md text
+*.txt text

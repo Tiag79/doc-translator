@@ -1,78 +1,78 @@
+# Sandrine.ai — Document Digitization & Translation
 
-# Document Digitization & Translation — Public Demo + Privacy-First
+**Computer-vision demo for NGOs assisting immigrants, refugees, and asylum seekers.**  
+Upload a photo/scan → OCR (Tesseract) → translate text.
 
-This repository contains **two Streamlit apps** designed to help NGOs and immigrant-serving organizations digitize and translate documents.
+- **Public Demo (online translation):** `doc_translator.py`
+- **Privacy-First App (offline translation):** `doc_translator_privacy.py` (FR/SW only)
+
+---
+
+## Features
+
+- 📷 Image cleanup (grayscale / threshold / denoise)
+- 🧠 OCR via **Tesseract**
+- 🌍 Translation
+  - **Public demo:** online (Google via `deep-translator`)
+  - **Privacy app:** offline **MarianMT** (FR↔EN, SW↔EN)
+- 🛡️ **Privacy-first mode:** in-memory processing, no file writes, no content logs
 
 ---
 
 ## ⚠️ Disclaimer
-This tool is provided **for informational support only**.  
-It does **not** replace professional legal, medical, or certified translation services.  
-By using this tool, you accept responsibility for how outputs are used.  
+This tool is provided **for informational and educational support only**.  
+It does **not** replace professional **legal, medical, immigration, or certified translation services**.  
+
+- Do not rely on this tool for decisions with legal, medical, or immigration consequences.  
+- Always seek help from a qualified professional for official matters.  
+- By using this tool, you accept full responsibility for how outputs are applied.  
+
 👉 [Read our full Privacy & Data Handling Policy](./PRIVACY_POLICY.md)
 
 ---
 
-## 📑 Apps Included
+## Supported languages (current)
 
-### 1. Public Demo App (`doc_translator.py`)
-- Lightweight, easy to deploy (e.g., Streamlit Cloud)
-- Uses online translation (`deep-translator` + Google services)
-- Best for **non-sensitive documents** (e.g., flyers, school notices)
+- **OCR:** English, French, Swahili  
+- **Translation (public demo):** EN↔FR, EN↔SW  
+- **Translation (privacy app):** EN↔FR, EN↔SW  
+- **Not available yet:** Portuguese, Lingala  
 
-**Run locally (Windows PowerShell):**
-```powershell
-cd "C:\path\to\doc-translator"
+> UI note: The apps display:  
+> _“⚠️ Portuguese and Lingala translation not available yet — only French and Swahili are supported at this time.”_
+
+---
+
+## Requirements
+
+- Python 3.10+ (Windows 10/11 tested)
+- Tesseract OCR installed locally (Windows):
+  - Download the 64-bit installer (e.g., `tesseract-ocr-w64-setup-5.x.x.exe`)
+  - Default path: `C:\Program Files\Tesseract-OCR\tesseract.exe`
+  - If needed, set the path in code:
+    ```python
+    import pytesseract
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+    ```
+
+---
+
+## Local setup
+
+```bash
+# Clone this repo
+git clone https://github.com/<your-username>/<your-repo>.git
+cd <your-repo>
+
+# 1) Public demo (online translation)
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 streamlit run .\doc_translator.py
-```
 
----
-
-### 2. Privacy-First App (`doc_translator_privacy.py`)
-- Processes documents **in memory only** (no storage, no logs)
-- Adds a **consent checkbox** before uploading
-- Supports **offline translation** (French, Portuguese, Swahili via MarianMT)
-- Lingala available **only in online mode** (disabled by default)
-
-**Run locally (Windows PowerShell):**
-```powershell
-cd "C:\path\to\doc-translator"
+# 2) Privacy app (offline FR/SW only)
 python -m venv .venv_privacy
 .\.venv_privacy\Scripts\Activate.ps1
 pip install -r requirements_offline.txt
 streamlit run .\doc_translator_privacy.py
-```
 
----
-
-## 🌐 Deployment
-
-### Streamlit Cloud (for the public demo)
-1. Push your repo to GitHub.  
-2. Include `packages.txt` in the repo root (installs Tesseract + language packs).  
-3. Deploy via [https://streamlit.io/cloud](https://streamlit.io/cloud).  
-
-### Self-Hosting (recommended for NGOs with sensitive docs)
-- Run the **privacy-first app** locally or on a secure server.  
-- Use **HTTPS + access control** if deployed online.  
-
----
-
-## 🛡️ Privacy & Security
-
-- Documents processed **in memory** only.  
-- **No storage, no logging.**  
-- Users must **check a consent box** before uploading.  
-- Two clear modes:  
-  - Privacy Mode → Offline translation only (FR/PT/SW)  
-  - Online Mode → Optional, but text may leave device  
-
-👉 [Read our full Privacy & Data Handling Policy](./PRIVACY_POLICY.md)
-
----
-
-## 🙌 Credits
-Built by **Sandrine Mujinga (Sandrine.ai)** to empower NGOs and immigrant communities with responsible AI tools.
